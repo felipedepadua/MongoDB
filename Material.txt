@@ -1,0 +1,22 @@
+---> Doc: MongoDB Manual: https://docs.mongodb.com/manual/introduction/
+
+- Installation on Windows: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+
+-[Registered] https://university.mongodb.com/
+
+-- > (VI) Intro to MongoDB using the MEAN stack: https://www.edx.org/school/mongodbx
+
+
+[DONE]- MongoDB in 30 min (Also follow the installation steps): https://www.youtube.com/watch?v=pWbMrx5rVBE
+	   - MEAN App from Scratch: https://www.youtube.com/watch?v=PFP0oXNNveg
+
+
+[DONE]- Good and Bad of MongoDB: https://www.youtube.com/watch?v=hWxnRi_WXtg
+	[DONE] https://stackoverflow.com/questions/5244437/pros-and-cons-of-mongodb
+	[DONE] http://www.developer.com/db/mongodb-nosql-solution-advantages-and-disadvantages.html
+
+
+--- Outros:
+- http://www.tutorialspoint.com/mongodb/
+- https://teamtreehouse.com/library/mongo-basics
+- https://www.codeschool.com/courses/the-magical-marvels-of-mongodb
