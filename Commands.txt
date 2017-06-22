@@ -1,1 +1,12 @@
  -- Installation Steps:
+    - Follow this: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/ [Very confusing though]
+	               OR [I followed this one and it WORKED!] https://www.youtube.com/watch?v=pWbMrx5rVBE
+				   
+				   1) Create the Folder `data` on "C:\Program Files\MongoDB\Server\3.4", then, inside it, create folder called 'db'
+				   2) Under bin directory, Run: mongod --directoryperdb --dbpath C:\Program Files\MongoDB\Server\3.4\data\db [continues at the same line below]
+				      --logpath C:\Program Files\MongoDB\Server\3.4\data\log\mongo.log	--logappend --rest --install
+						(It will allow us to run as a service)
+				   3) Now run: net start MongoDB 
+						(Now it is installed and running in the background as a service)
+				   4) Now, to start working on the mongo shell just run the command `mongo` (inside the `bin` directory)
+				   
