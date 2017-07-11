@@ -1,0 +1,37 @@
+SOURCE: https://docs.mongodb.com/manual/core/databases-and-collections/
+SOURCE: https://docs.mongodb.com/manual/tutorial/getting-started/
+
+SOURCE - DB COMMANDS: https://docs.mongodb.com/manual/reference/command/
+
+[VERY IMPORTANT] SOURCE - Mongo Shell Methods: https://docs.mongodb.com/manual/reference/method/
+  - HERE YOU CAN FIND LINK TO ALL COMMANDS
+
+
+-- MongoDB stores documents in collections. Collections are analogous to tables in relational databases.
+
+> use myDB (To select a database called 'myDB' to use)
+  - Use this same command to CREATE a database 
+  
+  - If a database does not exist, MongoDB creates the database when you first store data for that database. As such, you
+  can switch to a non-existent database and perform the following operation in the mongo shell:
+  1) use myNewDB
+  2) db.myNewCollection1.insertOne( { x: 1 } )
+      VI: The insertOne() operation creates both the database myNewDB and the collection myNewCollection1 if they do not already exist.
+  
+  
+  -- CREATE A COLLECTION: MongoDB provides the db.createCollection() method to explicitly create a collection with various options, such
+  as setting the maximum size or the documentation validation rules. If you are not specifying these options, you do not need to
+  explicitly create the collection since MongoDB creates new collections when you first store data for the collections.
+  
+  
+  -- INDEXES: https://docs.mongodb.com/manual/reference/method/db.collection.createIndex/#db.collection.createIndex
+      EX: db.myNewCollection3.createIndex( { y: 1 } )
+
+
+-- VIEWS: https://docs.mongodb.com/manual/core/views/
+  > db.createView(<view>, <source>, <pipeline>, <collation>)
+  
+  
+  -- COLLATION: https://docs.mongodb.com/manual/reference/collation/
+    - Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
+    - You can specify collation for a collection or a view, an index, or specific operations that support collation.

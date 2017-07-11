@@ -1,0 +1,32 @@
+> show dbs (to show databases)
+
+> use <db_name> (to switch to a database AND create the DB in case it does not exist yet)
+
+> db (to check which DB you are in)
+
+>db.createUser({
+	user: "Felipe",
+	pwd: "123",
+	roles: ["readWrite","dbAdmin"]
+});
+	PS: This is a simple one. Check other examples on the link below.
+	SOURCE: https://docs.mongodb.com/manual/reference/method/db.createUser/
+
+> db.createCollection('customers');  (create a collection called Customers [similar to tables in RDBMS. They store "documents"(or records)])
+
+> show collections 
+
+> db.customers.insert({firstName:"felipe", lastName:"padua"});
+
+> db.customers.insert([{firstName:"felipe", lastName:"padua"},{firstName:"brianna", lastName:"kress", gender:"female"}]); (Insert more than one; I also added a field called 'gender' for the last document)
+
+> db.customers.find();  (To show all the documents in the collection)
+OR
+> db.customers.find().pretty(); (To show the result with a better identation)
+
+> db.customers.update({firstName:"Brianna"},{firstName:"Brianna", lastName:"padua kress", gender:"female"});  (first paramater is the Match [it will update objects which have firstName as 'Brianna']; second parameter is the updated document [you have to retype ALL fields - There is a workaround for that bellow with the 'SET'])
+
+// The SET operator is a variation for the 'update' 
+> db.customers.update({lastName:"silva"},{$set:{gender:"male"}}); (It will only add the field 'gender' and it will keep the other fields)
+
+------ PAREI: (17:06)
