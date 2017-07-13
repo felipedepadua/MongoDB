@@ -1,3 +1,7 @@
+SOURCE: https://www.youtube.com/watch?v=pWbMrx5rVBE&t=1029s
+
+> cls (to clear)
+
 > show dbs (to show databases)
 
 > use <db_name> (to switch to a database AND create the DB in case it does not exist yet)
@@ -18,7 +22,7 @@
 
 > db.customers.insert({firstName:"felipe", lastName:"padua"});
 
-> db.customers.insert([{firstName:"felipe", lastName:"padua"},{firstName:"brianna", lastName:"kress", gender:"female"}]); (Insert more than one; I also added a field called 'gender' for the last document)
+> db.customers.insert([{firstName:"felipe", lastName:"padua"},{firstName:"brianna", lastName:"kress", address:{street: "rua bla bla", city:"lavras"}, memberships: [mem1,mem2], gender:"female"}]); (Insert more than one; I also added a field called 'gender' and 'address' for the last document)
 
 > db.customers.find();  (To show all the documents in the collection)
 OR
@@ -29,4 +33,49 @@ OR
 // The SET operator is a variation for the 'update' 
 > db.customers.update({lastName:"silva"},{$set:{gender:"male"}}); (It will only add the field 'gender' and it will keep the other fields)
 
------- PAREI: (17:06)
+//UNSET - to remove a 
+db.customers.update({lastName:"silva"},{$unset:{age:1}}); (remove AGE field)
+
+> db.customers.update({lastName:"padua"},{$inc:{age:5}}); (to increment the age by 5)
+
+> db.customers.update({firstName:"john"},{firstName:"john wayne", lastName:"armindo"},{upsert: true}); (It is going to update any document with firstName as john. If none, it is going to create a new document with these values)
+
+// Change the name a Field
+> db.customers.update({firstName:"Brianna"},{$rename{"gender":"sex"}});
+
+// To remove
+> db.customers.remove({firstName:"john"});
+
+// Remove only the first document that matched (in this case: firstName)
+> db.customers.remove({firstName:"john"},{justOne:true}); (even though, say, there were many "john", it will only delete the first found )
+
+> db.customers.find({firstName:"felipe"}).pretty(); (find all docs with firstName="felipe")
+
+// OR Operator
+> db.customers.find({$or:[{firstName:"felipe"},{firstName:"brianna"}]}).pretty(); (find all docs with firstName="felipe" or "brianna")
+
+// lt (less than), gt (greater than)
+// lte (less than or equal to), gte (greater than or equal to)
+> db.customers.find({age:{$lt:40}}); (find all customers with age < 40)
+
+// SEE Insert on line 23
+> db.customers.find({"address.city":"lavras"}); (find customers who live in Lavras)
+PS: Note that you have to put address.city between quotes. (Newer versions might not need the quotes anymore. Check and see if it works)
+
+// SEE Insert on line 23
+> db.customers.find({memberships:"mem1"}); (find customers with 'mem1' in memberships array)
+
+// Sorting
+> db.customers.find().sort({lastName:1}); (PS: one means ASCENDING order, for DESCENDING put: {lastName:-1} )
+
+// COUNT
+> db.customers.find({lastName:"padua"}).count();
+
+// LIMIT
+> db.customers.find().limit(4); (It will only show the first 4)
+
+// COMBINE LIMIT AND SORT
+> db.customers.find().limit(4).sort({lastName:1});
+
+// [VI] FOREACH, declare FUNCTION and print
+> db.customers.find().forEach(function(x){print("Customer Name:" + x.firstName)});
