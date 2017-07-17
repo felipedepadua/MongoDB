@@ -1,0 +1,14 @@
+MongoDB Atlas
+
+gmail
+shunn1993!
+	shunnaidder-demo:
+		- user: felipe_lavras , pass: shunnaidder
+
+
+---MongoDB University:
+user: felipe_lavras
+gmail
+pass: shunnaidder
+
+	
