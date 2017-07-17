@@ -114,3 +114,13 @@ PS: Note that you have to put address.city between quotes. (Newer versions might
 	ordered: false
     }
   );
+
+
+> db.movieDetails.find({"awards.wins":2,"awards.nominations":2}).count()
+  (find the amount [count()]  of collections with awards.wins=2 AND awards.nominations=2)
+  
+  > db.movies.find({"cast": "Angelina Jolie"}).pretty();
+    (Find documents which contains the element "Angelina Jolie" in the Array called  "cast")
+    
+ > db.movies.find({"cast.0": "Angelina Jolie"}).pretty();
+    (Find documents which contains the element "Angelina Jolie" as the FIRST ELEMENT in the Array called  "cast")
