@@ -28,6 +28,8 @@ SOURCE: https://www.youtube.com/watch?v=pWbMrx5rVBE&t=1029s
 OR
 > db.customers.find().pretty(); (To show the result with a better identation)
 
+> db.customers.findOne({"name": "felipe"}); (Returns only the first match)
+
 > db.customers.update({firstName:"Brianna"},{firstName:"Brianna", lastName:"padua kress", gender:"female"});  (first paramater is the Match [it will update objects which have firstName as 'Brianna']; second parameter is the updated document [you have to retype ALL fields - There is a workaround for that bellow with the 'SET'])
 
 // The SET operator is a variation for the 'update' 
@@ -43,8 +45,13 @@ db.customers.update({lastName:"silva"},{$unset:{age:1}}); (remove AGE field)
 // Change the name a Field
 > db.customers.update({firstName:"Brianna"},{$rename{"gender":"sex"}});
 
+// [VI] There is also "updateOne()" and "updateMany()"
+
 // To remove
 > db.customers.remove({firstName:"john"});
+
+// [VI] There is also "deleteOne()" and "deleteMany()"
+> db.movies.deleteOne({_id:ObjectId("59b4a....")});
 
 // Remove only the first document that matched (in this case: firstName)
 > db.customers.remove({firstName:"john"},{justOne:true}); (even though, say, there were many "john", it will only delete the first found )
@@ -124,3 +131,24 @@ PS: Note that you have to put address.city between quotes. (Newer versions might
     
  > db.movies.find({"cast.0": "Angelina Jolie"}).pretty();
     (Find documents which contains the element "Angelina Jolie" as the FIRST ELEMENT in the Array called  "cast")
+
+
+// Limit the field(s) you want to retrieve (Increases performance and saves network traffic)
+> db.movies.find({genre: "Action, Adventure"}, {title:1 , _id:0});
+	// Find movies with genre = action & adventure a INCLUDE the title and EXCLUDE _id.
+	   As a result, it will only display the title field.  
+(PS: 1- include this field, 0- exclude this field ; 
+ By default it will retrieve the _id, but you can exclude it if you want.)
+
+ > db.movies.UpdateOne({title: "The Martian"},{set:{ priceOnAmazon: 14.00}}); 
+ (Only update the first document that matches the filter)
+   // PS: it will create the field "priceOnAmazon", if it already exists, it will modify it to the new value
+
+   // CHECK: All Update operators ($set, $unset, $rename, etc.):
+      https://docs.mongodb.com/manual/reference/operator/update/ 
+
+// replaceOne(): https://docs.mongodb.com/manual/reference/method/db.collection.replaceOne/
+
+ // Mongo Shell is a fully functioning JavaScript interpreter
+    (You can declare variables, use built-in JS functions like push(<value>) ta add an item to array, etc)
+
