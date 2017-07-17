@@ -79,3 +79,38 @@ PS: Note that you have to put address.city between quotes. (Newer versions might
 
 // [VI] FOREACH, declare FUNCTION and print
 > db.customers.find().forEach(function(x){print("Customer Name:" + x.firstName)});
+
+--------------------------------------
+-----> FROM MONGODB UNIVERSITY COURSE:
+
+- You can create or own "_id" instead of letting Mongo generates one for you.
+- You can also insert many elements at once:
+- You can do ORDERED or UNORDERED inserts. (The default is ordered)
+   - UNORDERED means that if one document fails to be inserted (say it has a duplicate _id), it will not stop (ordered) and it 
+   wll insert the rest of thedocuments.
+   
+> db.myMovies.insertMany(
+    [
+        {
+	    "_id" : "tt0084726",
+	    "title" : "Star Trek II: The Wrath of Khan",
+	    "year" : 1982,
+	    "type" : "movie"
+        },        
+        {
+	    "_id" : "tt1408101",
+	    "title" : "Star Trek Into Darkness",
+	    "year" : 2013,
+	    "type" : "movie"
+        },
+        {
+	    "_id" : "tt0117731",
+	    "title" : "Star Trek: First Contact",
+	    "year" : 1996,
+	    "type" : "movie"
+        }
+    ],
+    {
+	ordered: false
+    }
+  );
