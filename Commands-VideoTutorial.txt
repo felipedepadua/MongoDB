@@ -149,6 +149,26 @@ PS: Note that you have to put address.city between quotes. (Newer versions might
 
 // replaceOne(): https://docs.mongodb.com/manual/reference/method/db.collection.replaceOne/
 
+
+** [Very Important]- ALL OPERATORS: https://docs.mongodb.com/manual/reference/operator/query/
+
+> db.movieDetails.find({runtime: {$gt: 90, $lte: 120}}, {_id: 0, title: 1, runtime: 1})
+  (All movies with a runtime greater than 90 minutes AND less than or equal to 120; show only title field)
+  
+> db.movieDetails.find({runtime: {$gte: 180}, "tomato.meter": 100}, {_id: 0, title: 1, runtime: 1})
+  (All movies with a runtime greater than 180 and tomato.meter = 100; show only title and runtime field)
+
+> db.movieDetails.find({rated: {$in: ["G", "PG"]}}, {_id: 0, title: 1, rated: 1})
+  (movies with rated = G or PG)
+  
+- $exists : Matches documents that have the specified field.
+
+- $all : Matches arrays that contain all elements specified in the query.
+
+- [VI] Regex: https://docs.mongodb.com/manual/reference/operator/query/regex/#op._S_regex 
+> db.movieDetails.find({"awards.text": {$regex: /^Won.* /}}, {_id: 0, title: 1, "awards.text": 1}).pretty()
+  (fond movies with the object field awards.text containing "Won ...."; returns ontle Title and Awards.text fields)
+
  // Mongo Shell is a fully functioning JavaScript interpreter
     (You can declare variables, use built-in JS functions like push(<value>) ta add an item to array, etc)
 
